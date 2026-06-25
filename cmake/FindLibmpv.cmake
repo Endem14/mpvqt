@@ -36,12 +36,14 @@ find_package(PkgConfig QUIET)
 
 pkg_search_module(PC_MPV QUIET mpv)
 
+# Edited the find path to accomodate for macos
 find_path(Libmpv_INCLUDE_DIRS
-    NAMES client.h
-    PATH_SUFFIXES mpv
-    HINTS ${PC_MPV_INCLUDEDIR}
+    NAMES mpv/client.h
+    HINTS
+        ${PC_MPV_INCLUDEDIR}
+        /opt/homebrew/include
+        /usr/local/include
 )
-
 
 find_library(Libmpv_LIBRARIES
     NAMES mpv
